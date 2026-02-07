@@ -99,9 +99,12 @@ body {
 
 /* Keep navigation at bottom */
 .navigation {
+    position: sticky;
+    bottom: 12px;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 12px 20px;
+    background: transparent;
 }
 
 /* Heart Seal & Roses */
