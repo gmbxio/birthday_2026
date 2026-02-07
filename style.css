@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Dancing Script', cursive;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: radial-gradient(circle, #ffffff 0%, #fff0f6 60%, #ffdee9 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.envelope {
+    width: 300px;
+    height: 200px;
+    background: #ffb3d9;
+    position: relative;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+    z-index: 1;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 120px solid #ff85b9;
+    transform-origin: top;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+}
+
+.letter {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    width: 270px;
+    height: 180px;
+    background: white;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+    box-shadow: inset 0 0 15px rgba(255, 182, 193, 0.2);
+}
+
+.letter-text {
+    font-size: 2.2rem;
+    color: #c9184a;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Specific fix for the image size */
+.page-image {
+    max-width: 80%;      /* Prevents it from being too wide */
+    max-height: 30vh;    /* Forces it to take up only 30% of the screen height */
+    object-fit: contain; /* Ensures the photo isn't stretched or cropped */
+    border-radius: 15px; /* Keeps the cute rounded edges */
+    margin: 10px auto;   /* Centers it with a small gap */
+    display: block;
+}
+
+/* Ensure the container doesn't overflow */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 90vh;    /* Keeps everything within the viewport */
+    padding: 10px;
+}
+
+/* Heart Seal & Roses */
+.heart-seal {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3.5rem;
+    z-index: 10;
+    transition: opacity 0.3s;
+    animation: pulse 1.5s infinite;
+}
+
+.rose {
+    position: absolute;
+    bottom: 10px;
+    font-size: 1.8rem;
+    z-index: 4;
+}
+.left-rose { left: 10px; transform: rotate(-15deg); }
+.right-rose { right: 10px; transform: rotate(15deg) scaleX(-1); }
+
+/* --- OPENING LOGIC --- */
+.envelope-wrapper.open .flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope-wrapper.open .letter {
+    transform: translateY(-130px);
+    z-index: 15;
+}
+
+.envelope-wrapper.open .heart-seal {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tap-hint {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    color: #ff4d88;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+/* Internal Page Styles */
+.page-container {
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.nav-btn {
+    background: #ff85b9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    margin: 10px;
+}
+/* Fixes the centering for the lock */
+#lock-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Styles the custom input box */
+.password-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#passwordInput {
+    padding: 12px 20px;
+    border: 2px solid #ffb3d9;
+    border-radius: 25px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    text-align: center;
+    outline: none;
+    color: #c9184a;
+    box-shadow: 0 5px 15px rgba(255, 179, 217, 0.3);
+}
+
+.unlock-btn {
+    background: #ff85b9;
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.unlock-btn:active {
+    transform: scale(0.9);
+}
+
+/* Restores the envelope position */
+.envelope-wrapper {
+    margin: 0 auto; /* Keeps it centered */
+}
+
+.lock-icon {
+    font-size: 3rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.1); }
+}
