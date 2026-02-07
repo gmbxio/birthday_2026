@@ -81,11 +81,27 @@ body {
 
 /* Ensure the container doesn't overflow */
 .page-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+/* This centers the main content */
+.page-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* vertical center */
+    align-items: center;       /* horizontal center */
+    text-align: center;
+    padding: 20px;
+}
+
+/* Keep navigation at bottom */
+.navigation {
+    display: flex;
     justify-content: space-between;
-    min-height: 90vh;    /* Keeps everything within the viewport */
-    padding: 10px;
+    padding: 20px;
 }
 
 /* Heart Seal & Roses */
